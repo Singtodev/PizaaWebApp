@@ -1,6 +1,7 @@
 <?php
     require_once('../services/index.php');
     require_once('../components/index.php');
+    
     $navbar = new Navbar(
         $isPageFolder,
         $userData
