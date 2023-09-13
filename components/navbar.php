@@ -5,9 +5,12 @@
         private $isPageFolder;
         private $userData;
 
+        private $profileImage;
+
         public function __construct($isPageFolder , $userData){
             $this->isPageFolder = $isPageFolder;
             $this->userData = $userData;
+            $this->profileImage = $userData['data']['m_avatar'];
         }
     
 
@@ -17,8 +20,8 @@
                 echo '<div class="menu flex flex-row ml-5 px-3 gap-x-4 p-2 flex items-center">';
 
 
-                    if($this->userData['data']['m_avatar']){
-                        echo '<div class="avatar w-[30px] h-[30px] bg-gray-300 rounded-full bg-cover bg-center object-cover" style="background-image: url(' . $this->userData['data']['m_avatar'] . ');"></div>';
+                    if($this->profileImage){
+                        echo '<div class="avatar w-[30px] h-[30px] bg-gray-300 rounded-full bg-cover bg-center object-cover" style="background-image: url(' . $this->profileImage . ');"></div>';
                     }else{
                         echo '<div class="avatar w-[30px] h-[30px] bg-gray-300 rounded-full"></div>';
                     }
@@ -34,6 +37,10 @@
                     echo '<div class="menu_bar text-2xl"><i class="fa-solid fa-bars"></i></div>';
                 echo '</div>';
             echo '</div>';
+        }
+
+        public function setProfileImage($imageUrl) {
+            $this->profileImage = $imageUrl;
         }
     }
 
