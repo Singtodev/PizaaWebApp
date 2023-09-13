@@ -15,7 +15,7 @@
     
 
         public function build() {
-            echo '<div class="relative navbar bg-white h-[60px] md:h-[80px] transition-all duration-300 flex items-center justify-between">';
+            echo '<div class="relative lg:hidden shadow-xl navbar bg-white h-[60px] md:h-[80px] transition-all duration-300 flex items-center justify-between">';
                 echo '<div class="logo w-[40px] rounded-xl h-[40px] mx-5 bg-cover bg-center object-cover bg-[url(https://img.freepik.com/premium-vector/pizza-logo-design_9845-319.jpg?w=826)]"></div>';
                 echo '<div class="menu flex flex-row ml-5 px-3 gap-x-4 p-2 flex items-center">';
 
