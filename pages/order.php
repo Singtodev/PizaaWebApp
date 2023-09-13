@@ -1,17 +1,20 @@
 <?php
-
-    $title = "Pizza Project";
-
+    require_once('../services/index.php');
+    require_once('../components/index.php');
+    $navbar = new Navbar(
+        $isPageFolder,
+        $userData
+    );
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title?></title>
-</head>
+<?php
+    require_once('../utils/head.php')
+?>
 <body>
-hello order
+    <div>
+        <?php $navbar->build();?>
+        Order
+    </div>
 </body>
 </html>

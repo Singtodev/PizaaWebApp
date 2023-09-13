@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^order$ pages/order.php [L]
+RewriteRule ^checkout$ pages/checkout.php [L]
+RewriteRule ^$ pages/home.php [L]
+RewriteRule ^home$ pages/home.php [L]
