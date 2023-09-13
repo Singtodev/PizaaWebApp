@@ -10,9 +10,9 @@
     // home
 
     // List of routes to check for authentication
-    $checkPathList = ['home','checkout','order','index.php'];
-
-    if (in_array($path, $checkPathList)) {
+    $checkPathList = ['','home','checkout','order','index'];
+    
+    if (in_array($ArrayPathName[3] , $checkPathList)|| in_array($path, $checkPathList)) {
         //to do if true
     } else {
         //to do if not
