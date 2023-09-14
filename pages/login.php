@@ -10,7 +10,7 @@
     }
 ?>
 <body>
-    <div class="relative lg:hidden">
+    <div class="relative">
         <div class="bg-white h-screen w-screen lg:hidden">
             <div class="relative h-[85vh] flex flex-col gap-y-3">
                 <div class="logo_section h-[200px] flex items-end justify-center">
