@@ -9,7 +9,12 @@
     RewriteRule ^checkout$ pages/checkout.php [L]
     RewriteRule ^login$ pages/login.php [L]
     RewriteRule ^register$ pages/register.php [L]
+    RewriteRule ^logout$ pages/logout.php [L]
     RewriteRule ^home$ pages/home.php [L]
+
+
+    #devsession
+    RewriteRule ^dev$ pages/fakesession.php [L]
 
     # Rewrite หน้าหลัก (root URL) ไปที่หน้า home.php
     RewriteRule ^$ pages/home.php [L]

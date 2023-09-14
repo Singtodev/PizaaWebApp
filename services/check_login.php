@@ -14,6 +14,11 @@
     
     if (in_array($ArrayPathName[3] , $checkPathList)|| in_array($path, $checkPathList)) {
         //to do if true
+        
+        if(!isset($_SESSION['isLoggedIn'])){
+            header("Location: login");
+        }
+
     } else {
         //to do if not
     }
