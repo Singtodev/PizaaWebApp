@@ -1,5 +1,22 @@
-RewriteEngine On
-RewriteRule ^order$ pages/order.php [L]
-RewriteRule ^checkout$ pages/checkout.php [L]
-RewriteRule ^$ pages/home.php [L]
-RewriteRule ^home$ pages/home.php [L]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # กำหนดเงื่อนไข RewriteCond ถ้า URL ไม่ตรงกับเส้นทางที่กำหนด
+    RewriteCond %{REQUEST_URI} !^/pages/(order|checkout|login|register|home)\.php
+
+    # กำหนดส่วนของ URL และไฟล์ PHP ที่ต้องการใช้งาน
+    RewriteRule ^order$ pages/order.php [L]
+    RewriteRule ^checkout$ pages/checkout.php [L]
+    RewriteRule ^login$ pages/login.php [L]
+    RewriteRule ^register$ pages/register.php [L]
+    RewriteRule ^home$ pages/home.php [L]
+
+    # Rewrite หน้าหลัก (root URL) ไปที่หน้า home.php
+    RewriteRule ^$ pages/home.php [L]
+
+
+    #but error
+    ErrorDocument 500 "<script src='https://cdn.tailwindcss.com'></script> <div class='absolute w-full h-full text-white flex items-center justify-center bg-black'><div class='flex flex-col items-center justify-center'><h1 class='text-[14rem]'>500</h1><p class='text-xl'>Server Down !</p></div></div>"
+    ErrorDocument 401 "<script src='https://cdn.tailwindcss.com'></script> <div class='absolute w-full h-full text-white flex items-center justify-center bg-black'><div class='flex flex-col items-center justify-center'><h1 class='text-[14rem]'>401</h1><p class='text-xl'>Sorry, Some error happend !</p></div></div>"
+    ErrorDocument 404 "<script src='https://cdn.tailwindcss.com'></script> <div class='absolute w-full h-full text-white flex items-center justify-center bg-black'><div class='flex flex-col items-center justify-center'><h1 class='text-[14rem]'>404</h1><p class='text-xl'>Page not found</p></div></div>"
+</IfModule>
