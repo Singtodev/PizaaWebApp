@@ -69,7 +69,7 @@
             </div>
             <div class="relative h-[15vh]">
                 <div class="w-full h-auto flex flex-row gap-x-2 justify-center">
-                    <p>your aren't have account </p>
+                    <p>you already account try </p>
                     <a href="login">
                         <span class="text-[#FF0000]">login</span>
                     </a>
