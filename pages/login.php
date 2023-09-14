@@ -1,10 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    require_once('../utils/head.php')
+
+    require_once('../utils/head.php');
+    require_once('../services/session.php');
+    if(isset($_SESSION['isLoggedIn'])){
+        header("Location: ./home");
+    }
 ?>
 <body>
-    <div class="relative">
+    <div class="relative lg:hidden">
         <div class="bg-white h-screen w-screen lg:hidden">
             <div class="relative h-[85vh] flex flex-col gap-y-3">
                 <div class="logo_section h-[200px] flex items-end justify-center">

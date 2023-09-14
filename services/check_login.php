@@ -13,14 +13,18 @@
     $checkPathList = ['','home','checkout','order','index'];
     
     if (in_array($ArrayPathName[3] , $checkPathList)|| in_array($path, $checkPathList)) {
+
+
         //to do if true
-        
+        // check if user not logged in redirect user to page login
+
         if(!isset($_SESSION['isLoggedIn'])){
-            header("Location: login");
+            header("Location: ./login");
         }
 
     } else {
         //to do if not
+        // if not check page continue....
     }
 
     $isPageFolder = $ArrayPathName[4] ? '1' : '0';

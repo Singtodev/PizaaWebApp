@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-    require_once('../utils/head.php')
+    require_once('../utils/head.php');
+    require_once('../services/session.php');
+    if(isset($_SESSION['isLoggedIn'])){
+        header("Location: ./home");
+    }
 ?>
 <body>
     <div class="relative">

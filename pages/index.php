@@ -2,6 +2,6 @@
 <html lang="en">
 <?php
     require_once('../utils/head.php');
-    header("Location: ");
+    header("Location: ./home");
 ?>
 </html>

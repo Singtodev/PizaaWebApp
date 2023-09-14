@@ -1,5 +1,5 @@
 <?php
     session_start();
     $_SESSION['isLoggedIn'] = true;
-    header("Location: home");
+    header("Location: ./home");
 ?>
