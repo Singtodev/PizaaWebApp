@@ -2,12 +2,6 @@
 <html lang="en">
 <?php
     require_once('../utils/head.php');
+    header("Location: ./home");
 ?>
-<body>
-    <script>
-        setTimeout(() => {
-            window.location.href = "../";
-        },100);
-    </script>
-</body>
 </html>
