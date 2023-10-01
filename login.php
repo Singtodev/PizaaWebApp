@@ -41,7 +41,13 @@
 
                 $_SESSION['user_id'] = $row['uid'];
                 $_SESSION['user_data'] = $row;
-                header("Location: index.php");
+
+                if($_SESSION['user_data']['role'] == '2'){
+                    header("Location: admin.php");
+                }else{
+                    header("Location: index.php");
+                }
+
             
                 
             }else{
