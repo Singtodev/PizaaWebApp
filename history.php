@@ -2,6 +2,8 @@
     session_start();
     include_once('./utils/condb.php');
     include_once('./utils/datethai.php');
+    include_once('./components/view/navbar.php');
+    include_once('./components/view/sidebar.php');
     $result;
     if(isset($_SESSION['user_data'])){
         $sql = "select * from iorder where uid = ? and status != 1 order by oid desc";
@@ -23,7 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title?></title>
+    <title>Pizza</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -32,45 +34,16 @@
 <body class="bg-gray-100 relative">
 
     <div class="toggle_menu shadow-lg z-20 top-0 right-0  transition-all duration-300 max-w-[20rem] min-w-[20rem] h-screen fixed bg-white px-4">
-        <i class="toggle-menu-button cursor-pointer fa-solid fa-arrow-right text-2xl bg-white text-['#131921'] p-2 rounded-md px-2 mx-2"></i>
-            <div class="h-[80%]">
-                <div class="flex flex-col gap-y-4 py-4 cursor-pointer">
-
-                    <a href="./index.php">
-                        <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">หน้าแรก</div>
-                    </a>
-
-
-                    <?php
-                    
-                    if(isset($_SESSION['user_data'])){ ?>
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตระกร้าของฉัน</div>
-                    <a href="./history.php">
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ประวัติรายการสั่งซื้อ</div>
-                    </a>
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>
-                    
-                    <?php } ?>
-
-                </div>
-
-            </div>
-            <div class="h-[20%]">
-            <?php
-            if(isset($_SESSION['user_data'])){ ?>
-                <div class="text-center mb-2"><?php echo $_SESSION['user_data']['name'] ?></div>
-                <a href="./logout.php">
-                    <div class="bg-red-500 text-white rounded-md p-2 text-center">Sign Out</div>
-                </a>
-            <?php } ?>
-            </div>
-
+                <?php
+                    $sidebarComponent = new SidebarComponent();
+                    echo $sidebarComponent->build();
+                ?>
 
     </div>
 
     <div class="mx-auto lg:w-full lg:mx-0">
                 <?php
-                    $navbarComponent = new NavbarComponent();
+                    $navbarComponent = new NavbarComponent($condb);
                     echo $navbarComponent->build();
                 ?>
     </div>
