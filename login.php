@@ -13,51 +13,54 @@
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-
-            if(password_verify($password,$row['password'])){
-
-                $sql_check = "SELECT count(*) as count FROM iorder where uid = ? and status = ?";
-                $stmt2 = $condb->prepare($sql_check);
-                $status = '1';
-                $stmt2->bind_param('ss', $row['uid'], $status);
-                $stmt2->execute();
-                $result_billing = $stmt2->get_result();
-                $row_billing = $result_billing->fetch_assoc();
-
-                if($row_billing['count'] == 0){
-
-                    $sql3 = "INSERT INTO `iorder` (`uid`, `odate`, `payment_method`, `recipient_name`, `recipient_phone`, `recipient_address`, `total`, `status`) VALUES (?, current_timestamp(), NULL, NULL, NULL, NULL, '0.00', '1');";
-                    $stmt3 = $condb->prepare($sql3);
-                    $stmt3->bind_param('s', $row['uid']);
-                    $stmt3->execute();
-                    
-                    if ($stmt3->affected_rows == 1) {
-                        echo 'A new order has been created.';
-                    }
-
-                }
-
-
-
-                $_SESSION['user_id'] = $row['uid'];
-                $_SESSION['user_data'] = $row;
-
-                if($_SESSION['user_data']['role'] == '2'){
-                    header("Location: admin.php");
-                }else{
-                    header("Location: index.php");
-                }
-
             
-                
-            }else{
-                // echo 'ล็อกอินไม่ผ่าน';
-                session_destroy();
-                $_SESSION['login_error'] = 'The email and password you entered did not match our records.';
+            if(isset($row['password'])){
+                    if(password_verify($password,$row['password'])){
+
+                        $sql_check = "SELECT count(*) as count FROM iorder where uid = ? and status = ?";
+                        $stmt2 = $condb->prepare($sql_check);
+                        $status = '1';
+                        $stmt2->bind_param('ss', $row['uid'], $status);
+                        $stmt2->execute();
+                        $result_billing = $stmt2->get_result();
+                        $row_billing = $result_billing->fetch_assoc();
+        
+                        if($row_billing['count'] == 0){
+        
+                            $sql3 = "INSERT INTO `iorder` (`uid`, `odate`, `payment_method`, `recipient_name`, `recipient_phone`, `recipient_address`, `total`, `status`) VALUES (?, current_timestamp(), NULL, NULL, NULL, NULL, '0.00', '1');";
+                            $stmt3 = $condb->prepare($sql3);
+                            $stmt3->bind_param('s', $row['uid']);
+                            $stmt3->execute();
+                            
+                            if ($stmt3->affected_rows == 1) {
+                                echo 'A new order has been created.';
+                            }
+        
+                        }
+        
+        
+        
+                        $_SESSION['user_id'] = $row['uid'];
+                        $_SESSION['user_data'] = $row;
+        
+                        if($_SESSION['user_data']['role'] == '2'){
+                            header("Location: admin.php");
+                        }else{
+                            header("Location: index.php");
+                        }
+        
+                    
+                        
+                    }else{
+                        // echo 'ล็อกอินไม่ผ่าน';
+                        session_destroy();
+                        $_SESSION['login_error'] = 'The email and password you entered did not match our records.';
+                    }
             }
+
             
         }else{
-
+            $_SESSION['login_error'] = 'Email or Password is required !.';
         }
 
         
@@ -102,7 +105,7 @@
 
 
                         <div class=" text-red-500 max-w-[20rem]">
-                            <?php echo $_SESSION['login_error'] ? 'NOTE : ' . $_SESSION['login_error'] : '' ?>
+                            <?php echo isset($_SESSION['login_error']) ? 'NOTE : ' . $_SESSION['login_error'] : '' ?>
                         </div>
 
 
