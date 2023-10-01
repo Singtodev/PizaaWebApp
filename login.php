@@ -14,18 +14,40 @@
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
 
-            print_r($row);
-
             if(password_verify($password,$row['password'])){
-                echo 'ล็อกอินสำเร็จ';
+
+                $sql_check = "SELECT count(*) as count FROM iorder where uid = ? and status = ?";
+                $stmt2 = $condb->prepare($sql_check);
+                $status = '1';
+                $stmt2->bind_param('ss', $row['uid'], $status);
+                $stmt2->execute();
+                $result_billing = $stmt2->get_result();
+                $row_billing = $result_billing->fetch_assoc();
+
+                if($row_billing['count'] == 0){
+
+                    $sql3 = "INSERT INTO `iorder` (`uid`, `odate`, `payment_method`, `recipient_name`, `recipient_phone`, `recipient_address`, `total`, `status`) VALUES (?, current_timestamp(), NULL, NULL, NULL, NULL, '0.00', '1');";
+                    $stmt3 = $condb->prepare($sql3);
+                    $stmt3->bind_param('s', $row['uid']);
+                    $stmt3->execute();
+                    
+                    if ($stmt3->affected_rows == 1) {
+                        echo 'A new order has been created.';
+                    }
+
+                }
+
+
+
                 $_SESSION['user_id'] = $row['uid'];
                 $_SESSION['user_data'] = $row;
                 header("Location: index.php");
+            
                 
             }else{
                 // echo 'ล็อกอินไม่ผ่าน';
                 session_destroy();
-                $_SESSION['login_error'] = true;
+                $_SESSION['login_error'] = 'The email and password you entered did not match our records.';
             }
             
         }else{
@@ -43,34 +65,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
-    rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles.css">
 
     <title>Login Page</title>
 </head>    
-<body class="bodylogin">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    
-    
+<body class="_login_screen relative bg-[url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')]">
+        <div class="z-20 max-w-[40rem] h-screen bg-white flex items-center justify-center" >
+                <div class="from_section">
+                    <div class="topic text-2xl py-8 text-center">Sign In</div>
+                    
+                    <div class="max-w-[25rem] flex flex-col gap-y-4 mx-auto  py-2 px-4">
+                        <form method="post">
+                        <div class="group flex flex-row items-center gap-x-6  mb-6">
+                            <div class="w-[25%]">Email</div>
+                            <div class="w-[75%]">
+                                <input placeholder="Enter your email" class="px-3 outline-none rounded-lg border p-1 hover:cursor-pointer border-gray-300" type="email" name="email" required  />
+                            </div>
+                        </div>
 
-    <div class="container">
-        <div class="login-card">
-            <h2>Head</h2>
-                <form method="POST" action="login.php">
-                    <input type="email"    name="email"    placeholder="Email"    required><br>
-                    <input type="password" name="password" placeholder="Password" required><br>
-                    <button type="submit">Sign in</button>
-                </form>
-                        <?php
-                            if(isset($_SESSION['login_error'])){
-                                echo '<p class="error-message">Sign in fail</p>';
-                                
-                            }
-                        ?>
+                        <div class="group flex flex-row items-center gap-x-6 mb-6">
+                            <div class="w-[25%]">Password</div>
+                            <div class="w-[75%]">
+                                <input placeholder="Enter your password" class="px-3 outline-none rounded-lg border p-1 hover:cursor-pointer border-gray-300" type="password" name="password" required  />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="rounded-md w-full my-6 bg-orange-500 text-white block py-2 text-center cursor-pointer hover:bg-opacity-50 transition-all duration-300">เข้าสู่ระบบ</button>
+                        </form>
+
+
+                        <div class=" text-red-500 max-w-[20rem]">
+                            <?php echo $_SESSION['login_error'] ? 'NOTE : ' . $_SESSION['login_error'] : '' ?>
+                        </div>
+
+
+                    </div>
+                </div>
+
         </div>
-    </div>
-
+        <script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
     </body>
 </html>
