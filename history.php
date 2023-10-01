@@ -73,7 +73,7 @@
                 <div class="hidden md:flex flex-row w-full">
                     <div class="w-[30%] lg:w-[20%] flex px-5">
                         <div class="relative flex flex-col w-[5rem] h-[2.4rem] mx-5 flex items-center justify-center text-xl text-white">
-                            Piazzanician
+                            Pizzanician
                             <span class="text-[10px] absolute left-0 top-5">by cs msu</span>
                         </div>
                     </div>
