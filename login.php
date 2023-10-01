@@ -56,6 +56,10 @@
                         session_destroy();
                         $_SESSION['login_error'] = 'The email and password you entered did not match our records.';
                     }
+            }else{
+                // echo 'ล็อกอินไม่ผ่าน';
+                session_destroy();
+                $_SESSION['login_error'] = 'The email and password you entered did not match our records.';
             }
 
             
