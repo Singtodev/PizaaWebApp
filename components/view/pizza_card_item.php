@@ -1,5 +1,5 @@
 <?php
-    include_once('../utils/condb.php');
+    
 
 class PizzaCardItem {
 
