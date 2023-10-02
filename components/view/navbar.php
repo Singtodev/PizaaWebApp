@@ -3,9 +3,9 @@
 class NavbarComponent {
 
     public $condb;
-    public $cartItemCount;
-    public $cartItems;
-    public $cartItemsSumTotal;
+    public $cartItemCount = 0;
+    public $cartItems = [];
+    public $cartItemsSumTotal = 0;
 
     public function __construct($condb) {
         $this->condb = $condb;
@@ -13,7 +13,7 @@ class NavbarComponent {
     }
 
     public function queryOrderItems() {
-        if (isset($_SESSION['user_data'])) {
+        if (isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] != 2) {
             $uid = $_SESSION['user_data']['uid'];
             $sql = "SELECT * FROM iorder WHERE uid = ? AND status = 1";
             $stmt = $this->condb->prepare($sql);
@@ -111,7 +111,7 @@ class NavbarComponent {
                         <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
                             <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="Search Pizza" name="search" />
                             <div class="w-[3rem] h-full absolute left-0 top-0 flex items-center text-gray-500 justify-center bg-gray-300 rounded-tl-lg">All</div>
-                            <div class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300">Search</div>
+                            <div class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300 text-white">Search</div>
                         </div>
                     </div>
                     <div class="w-[30%] lg:w-[20%]">

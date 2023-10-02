@@ -46,7 +46,7 @@
     <div class="max-w-[80rem] lg:max-w-[110rem] mx-auto lg:py-14 mb-8">
 
                 <div class="max-w-[72rem] mx-auto min-h-[30rem] bg-gradient-to-r from-[#131921] lg:mb-14 py-10 px-10">
-                        <div class="text-3xl text-white">ตระกร้าสินค้าของฉัน</div>
+                        <div class="text-3xl text-white">ตระกร้าสินค้าของฉัน <?php echo count($cartItems) == 0 ? '(ไม่มีสินค้าในตระกร้า)' : 'false' ?></div>
                         <div class="grid grid-cols-3 gap-4 py-2">
                         <?php
                                 foreach($cartItems as $item) { ?>
@@ -68,19 +68,28 @@
                    
                                         </div>
     
-                            <?php } ?>
+                                <?php } ?>
                          </div>
 
-                         <div class="text-white text-xl my-6"> เลือกช่องทางชำระเงิน</div>
-                         <div class="grid grid-cols-2 gap-2 mt-6">
-                                <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบเงินสด (Cash)</div>
-                                <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบสแกน (QR Code)</div>
-                         </div>
-                        
-                        <div class="flex flex-col gap-2 mt-6">
-                            <div class="text-white text-xl"> ราคารวมทั้งหมด <?php echo $sumTotal ?> THB</div>
-                            <div class="bg-lime-500 text-white w-full max-w-[30rem] hover:bg-opacity-50 transition-all duration-300 py-1 rounded-md px-2 cursor-pointer text-center">ชำระเงิน</div>
-                        </div>
+                         <?php
+
+                            if(count($cartItems) > 0){ ?>
+                                <div class="text-white text-xl my-6"> เลือกช่องทางชำระเงิน</div>
+                                <div class="grid grid-cols-2 gap-2 mt-6">
+                                       <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบเงินสด (Cash)</div>
+                                       <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบสแกน (QR Code)</div>
+                                </div>
+                               
+                               <div class="flex flex-col gap-2 mt-6">
+                                   <div class="text-white text-xl"> ราคารวมทั้งหมด <?php echo $sumTotal ?> THB</div>
+                                   <div class="bg-lime-500 text-white w-full max-w-[30rem] hover:bg-opacity-50 transition-all duration-300 py-1 rounded-md px-2 cursor-pointer text-center">ชำระเงิน</div>
+                               </div>
+                            <?php } ?>
+
+
+                        ?>
+
+
 
                 </div>
 
