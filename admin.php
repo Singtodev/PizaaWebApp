@@ -1,5 +1,6 @@
 <?php
     session_start();
+    
     if($_SESSION['user_data']['role'] != '2'){
         header("Location: index.php");
     }
@@ -26,7 +27,7 @@
 </head>
 <body class="bg-gray-100 relative">
 
-    <div class="toggle_menu shadow-lg z-20 top-0 right-0  transition-all duration-300 max-w-[20rem] min-w-[20rem] h-screen fixed bg-white px-4">
+<div class="toggle_menu shadow-lg z-20 top-0 right-0  transition-all duration-300 max-w-[20rem] min-w-[20rem] h-screen fixed bg-white px-4">
         <i class="toggle-menu-button cursor-pointer fa-solid fa-arrow-right text-2xl bg-white text-[#131921] p-2 rounded-md px-2 mx-2"></i>
             <div class="h-[80%]">
                 <div class="flex flex-col gap-y-4 py-4 cursor-pointer">
@@ -34,19 +35,11 @@
                     <a href="./index.php">
                         <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">หน้าแรก</div>
                     </a>
-
-
                     <?php
                     
                     if(isset($_SESSION['user_data'])){ ?>
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตระกร้าของฉัน</div>
-                    <a href="./history.php">
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ประวัติรายการสั่งซื้อ</div>
-                    </a>
-                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>
-                    
+                    <div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>                    
                     <?php } ?>
-
                 </div>
 
             </div>
@@ -130,40 +123,71 @@
 
     <div class="container-fluid" style="margin-top: 50px;">
         <div class="row">
-            <div class="col-12" style="display: flex; ">
-                <h6 class="text-light">Management</h6>
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <div class="text-4xl font-bold py-2 mb-2">Management</div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="row" style="margin-top: 50px;">
+        <div class="d-flex" style="justify-content: center;">
+            <div class="card rounded" style="width: 25rem; height: 16rem; margin-right: 30px;">
+                <div class="card-body">
+                    <h5 class="card-title">หัวข้อการ์ด 1</h5>
+                    <p class="card-text">เนื้อหาการ์ด 1</p>
+                </div>
+            </div>
+            <div class="card rounded" style="width: 25rem; height: 16rem;">
+                <div class="card-body">
+                    <h5 class="card-title">หัวข้อการ์ด 2</h5>
+                    <p class="card-text">เนื้อหาการ์ด 2</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row" style="margin-top: 50px;">
-        
-            <div class="row">
-                <div class="col-4" style="display: flex; justify-content: center;">
-                    <div class="card rounded" style="width: 25rem; height: 16rem">
-                        
-                        <div class="card-body">
-                        <h5 class="card-title">Card Title</h5>
-                        <p class="card-text"></p>
-                       
-                        
-                        </div>
-                    </div>
-                </div>
                 
+    <div class="max-w-[80rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
+        <div class="title text-2xl text-right py-4 px-4">กำลังดำเนินการ <?= $result->num_rows ?> รายการ</div>
+        <?php
+        $i = 0;
+        while($row = $result->fetch_assoc()){
+             $i++;
+            ?>
+            <a href="./history_show.php?oid=<?= $row['oid']?>">
+            <div class="flex flex-col py-2  border-b border-gray-300 cursor-pointer hover:bg-gray-300 px-2 transition-all duration-300 hover:bg-opacity-50 rounded-md">
+                <div class="h-auto pb-6 pt-4  ">
+                    <div>Order ID <?= $row['oid'] ?> </div>
+                    <div class="flex flex-row gap-x-2  ">
+                        <div><?= $row['status'] == 3 ?  'ราคาทั้งหมด ' . $row['total'] : '' ?></div>
+                    </div>
+                    <div class="flex flex-row gap-x-2  ">
+                        <div><?= getThaiDateWithTime($row['odate']) ?></div>
+                    </div>
+
+                </div>
+                <div class="grid grid-cols-2">
+                        <div class="text-center rounded-md <?=$row['status'] == 2 ? 'bg-gray-700 text-white': '' ?>">ยังไม่ส่ง</div>                      
 
             </div>
-            
-        
+            </a>
 
-    
-    
-    
-
+       <?php }  ?>  
+    </div>
 
 
     
+    <script>
+        $(document).ready(function(){            
+        $('.toggle-menu-button').click(function(){
+            var dom = document.getElementsByClassName("toggle_menu")[0];
+            dom.classList.toggle("active");
+        })
+        });
 
+    </script>
+
+    
 
 </body>
 </html>
