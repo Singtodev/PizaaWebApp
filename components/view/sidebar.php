@@ -19,7 +19,7 @@ class SidebarComponent {
             echo '<div class="rounded-md p-2 hover-bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>';
         }
 
-        if($_SESSION['user_data']['role'] == '2'){
+        if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == '2'){
             echo '<a href="./admin.php">';
             echo '<div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">หน้าผู้ดูแล</div>';
             echo '</a>';

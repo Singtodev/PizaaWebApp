@@ -62,6 +62,7 @@
                                                         <div class="size_name">Pizza Size : <?= $item['size_name'] ?></div>   
                                                         <div class="quantity">Quantity : <?= $item['quantity'] ?></div>   
                                                         <div class="price">Total : <?= $item['total'] ?> THB </div>  
+                                                        <div class="w-full py-2 bg-red-500 text-center  text-white mt-2 rounded-md">ลบออกจากตระกร้า</div>
                                                     </div>
 
                                                 </div>
