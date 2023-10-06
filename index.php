@@ -110,7 +110,7 @@
                 <section id="section-pizza-show">
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-5 lg:grid-cols-4  lg:gap-x-10 gap-y-10">
                         <?php
-                            $sql = "SELECT food.fid, food.description, (food.price + food_size.price + food_crust.price) as price, food.image,
+                            $sql = "SELECT food.fid, food.description, (food_type.price + food_size.price + food_crust.price) as price, food.image,
                             food.name as f_name, food_type.name as f_type_name, food_size.name as f_size_name, food_crust.name as f_crust_name
                             FROM food
                             JOIN food_type ON food.ftid = food_type.ftid
@@ -119,6 +119,7 @@
                             ORDER BY food.fid";
                             
                         $result = $condb->query($sql);
+                        
                         while($row = $result->fetch_assoc()) { ?>
 
                                 <?php

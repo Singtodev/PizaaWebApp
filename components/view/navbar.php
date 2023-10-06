@@ -47,10 +47,11 @@ class NavbarComponent {
     }
 
     public function queryItemCart($data) {
-            $sql = "SELECT oid,food.name, food.image as image, food_size.name as size_name ,food_crust.name as crust_name ,order_amount.amount as quantity ,((food.price + food_crust.price + food_size.price) * order_amount.amount) as total
-            FROM  order_amount ,food, food_crust ,food_size
+            $sql = "SELECT oid,food.name, food.image as image, food_size.name as size_name ,food_crust.name as crust_name ,order_amount.amount as quantity ,((food_type.price + food_crust.price + food_size.price) * order_amount.amount) as total
+            FROM  order_amount ,food, food_crust ,food_size , food_type
             WHERE order_amount.fid = food.fid
-            AND      order_amount.fcid = food_crust.fcid
+            AND   food.ftid = food_type.ftid
+            AND   order_amount.fcid = food_crust.fcid
             AND   order_amount.fsid = food_size.fsid
             AND   order_amount.oid = ?
             ";
@@ -70,10 +71,11 @@ class NavbarComponent {
     }
 
     public function querySumTotal($data){
-        $sql = "SELECT sum((food.price + food_crust.price + food_size.price) * order_amount.amount) as total
-        FROM  order_amount ,food, food_crust ,food_size
+        $sql = "SELECT sum((food_type.price + food_crust.price + food_size.price) * order_amount.amount) as total
+        FROM  order_amount,food,food_crust,food_size,food_type
         WHERE order_amount.fid = food.fid
-        AND      order_amount.fcid = food_crust.fcid
+        AND   food.ftid = food_type.ftid
+        AND   order_amount.fcid = food_crust.fcid
         AND   order_amount.fsid = food_size.fsid
         AND   order_amount.oid = ?
         ";
@@ -102,10 +104,12 @@ class NavbarComponent {
             <div class="relative navbar w-full bg-[#131921] h-[4rem] flex items-center">
                 <div class="hidden md:flex flex-row w-full">
                     <div class="w-[30%] lg:w-[20%] flex px-5">
+                    <a href="index.php" class="cursor-pointer">
                         <div class="relative flex flex-col w-[5rem] h-[2.4rem] mx-5 flex items-center justify-center text-xl text-white">
                             Pizzanician
                             <span class="text-[10px] absolute left-0 top-5">by cs msu</span>
                         </div>
+                </a>
                     </div>
                     <div class="w-[40%] lg:w-[60%]">
                         <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
