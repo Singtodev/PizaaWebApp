@@ -117,10 +117,11 @@ class NavbarComponent {
                     <div class="w-[30%] lg:w-[20%]">
                         <div class="relative flex items-center px-4 w-full h-full text-white">
                             <div class="relative">
-                                <a href="my_cart.php">
-                                <i class="fa-solid fa-cart-shopping text-2xl cursor-pointer"></i>' .
-                                ($this->cartItemCount > 0 ? '<span class="absolute bg-red-600 rounded-full w-5 h-5 -right-2 flex items-center justify-center items-center -top-1">' . $this->cartItemCount . '</span>' : '') . '
-                                </a>
+                                ' . (isset($_SESSION['user_data']) && isset($_SESSION['user_data']['role']) && $_SESSION['user_data']['role'] != 2 ? '
+                                    <a href="my_cart.php">
+                                        <i class="fa-solid fa-cart-shopping text-2xl cursor-pointer"></i>' . ($this->cartItemCount > 0 ? '<span class="absolute bg-red-600 rounded-full w-5 h-5 -right-2 flex items-center justify-center items-center -top-1">' . $this->cartItemCount . '</span>' : '') . '
+                                    </a>
+                                ' : '') . '
                             </div>
                             <div class="absolute right-10 flex flex-row gap-x-5 items-center">
                                 ' . (!isset($_SESSION['user_data']) ? '<a href="./login.php"><div class="cursor-pointer">Sign In</div></a>' : '') . '
@@ -133,6 +134,7 @@ class NavbarComponent {
             </div>
         ';
     }
+    
 }
 
 ?>

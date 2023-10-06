@@ -9,7 +9,7 @@ class SidebarComponent {
         echo '<div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">หน้าแรก</div>';
         echo '</a>';
 
-        if (isset($_SESSION['user_data'])) {
+        if (isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] !=  '2' ) {
             echo '<a href="./my_cart.php">';
             echo '<div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ตระกร้าของฉัน</div>';
             echo '</a>';

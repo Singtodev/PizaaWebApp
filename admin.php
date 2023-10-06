@@ -43,7 +43,7 @@
 
     <div class="max-w-[60rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
         <div class="title text-2xl text-right py-4 px-4 ">หน้าผู้ดูแลระบบ</div> 
-        
+        <div class="title text-xl text-left py-4 px-4 ">รายงานผลรวม</div> 
         <div class="grid grid-cols-3 h-[10rem] gap-4 my-4">
             <div class="bg-gray-300 p-2 shadow-xl" >
                     <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นวันนี้</div>
@@ -72,6 +72,41 @@
                     <div class="mx-2 text-2xl">ยอดขายปีนี้</div>
                     <div class="mx-2 text-2xl mt-10 text-xl text-right">123135 THB</div>
             </div>
+        </div>
+
+        <div class="title text-xl text-left py-4 px-4 ">รายการที่ต้องตรวจสอบ</div> 
+
+
+
+
+        <div class="grid grid-cols-1">
+                    <div class="w-full grid grid-cols-5 py-4">
+                            <div class="px-1"> รหัสออเดอร์ #</div>
+                            <div class="px-1"> รหัสลูกค้า  #</div>
+                            <div class="px-1"> ชื่อลูกค้า  #</div>
+                            <div class="px-1"> จำนวนเงิน #</div>
+                            <div class="px-1"> Action</div>
+                    </div>
+            <?php 
+                $sql = "SELECT * 
+                        FROM iorder , user
+                        where iorder.uid = user.uid
+                        and  iorder.status = 2";
+                $result = $condb->query($sql);
+                $i = 0;
+                while($row = $result->fetch_assoc()){  $i++ ?>
+                    <div class="w-full grid grid-cols-5 py-4 <?php echo ($i % 2 == 0 ? 'bg-white' : 'bg-gray-200'); ?>">
+                            <div class="px-1"><?php echo $row['oid'] ?></div>
+                            <div class="px-1"><?php echo $row['uid'] ?></div>
+                            <div class="px-1"><?php echo $row['name'] ?></div>
+                            <div class="px-1"><?php echo $row['total'] ?></div>
+                            <div class="flex gap-x-2">
+                                <div class="cursor-pointer hover:bg-opacity-50 transition-all duration-300 bg-lime-600 px-4 text-white rounded-md">ยินยัน</div>
+                            </div>
+                    </div>
+                <?php } ?>
+
+
         </div>
 
 
