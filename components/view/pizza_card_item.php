@@ -10,7 +10,7 @@ class PizzaCardItem {
     public function build($row) {
         // Echo the HTML markup
         echo '<div class="relative bg-white border-4 border-white rounded-md hover:border-[#131921] transition-all duration-300">';
-        echo '<div class="card w-full h-[16rem] md:h-[14rem] lg:h-[16rem] cursor-pointer bg-gray-300 bg-contain object-cover bg-center bg-no-repeat" style="background-image: url(\'' . $row['image'] . '\')"></div>';
+        echo '<div class="card w-full h-[8rem] md:h-[8rem] lg:h-[12rem] cursor-pointer bg-gray-300 bg-contain object-cover bg-center bg-no-repeat" style="background-image: url(\'' . $row['image'] . '\')"></div>';
         echo '<div class="content p-2">';
         echo '<div class="header">';
         echo '<div class="title text-bold text-xl">' . $row['f_name'] . '</div>';

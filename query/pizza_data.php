@@ -23,7 +23,7 @@
                     // Generate the placeholders for the IN clause for types
                     $placeholders_types = implode(',', array_fill(0, count($types), '?'));
 
-                    $sql = "SELECT food.fid, food.description, (food.price + food_size.price + food_crust.price) as price, food.image,
+                    $sql = "SELECT food.fid, food.description, (food_type.price + food_size.price + food_crust.price) as price, food.image,
                             food.name as f_name, food_type.name as f_type_name, food_size.name as f_size_name, food_crust.name as f_crust_name
                             FROM food
                             JOIN food_type ON food.ftid = food_type.ftid
