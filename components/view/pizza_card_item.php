@@ -30,10 +30,9 @@ class PizzaCardItem {
                         echo '<div class="badge">';
                         echo '</div>';
                 echo '</div>';
-
                 if (isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] !=  '2' ) {
                 echo '<div class="items-center gap-x-3 hidden lg:flex">';
-                    echo '<i class="fa-solid cursor-pointer fa-plus inline-block bg-green-500 text-white px-2 rounded-full hover:bg-opacity-50 transition-all duration-300 text-2xl text-white"></i>';
+                    echo '<a href="add_pizza.php?f_id=' . $row['fid'] . '"><i class="fa-solid cursor-pointer fa-plus inline-block bg-green-500 text-white px-2 rounded-full hover:bg-opacity-50 transition-all duration-300 text-2xl text-white"></i></a>';
                     echo '<a href="show.php?f_id=' . $row['fid'] . '"><i class="fa-solid fa-search inline-block text-green-500 text-2xl"></i></a>';
                 echo '</div>';
                 }

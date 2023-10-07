@@ -78,15 +78,9 @@
        <?php }  ?>  
     </div>
 
-    <script>
-        $(document).ready(function(){            
-        $('.toggle-menu-button').click(function(){
-            var dom = document.getElementsByClassName("toggle_menu")[0];
-            dom.classList.toggle("active");
-        })
-        });
-
-    </script>
+    <?php
+            include_once('./utils/toggle_menu.php');
+     ?>
 
 </body>
 </html>

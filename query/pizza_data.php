@@ -1,6 +1,6 @@
 
 <?php 
-
+    session_start();
     include_once('../utils/condb.php');
     include_once('../components/view/pizza_card_item.php');
 
@@ -32,7 +32,7 @@
                             WHERE food_size.name IN ($placeholders_sizes)
                             AND food_crust.name IN ($placeholders_crusts)
                             AND food_type.name IN ($placeholders_types)
-                            ORDER BY food.fid";
+                            ORDER BY food.fid DESC";
 
 
                     $stmt = $condb->prepare($sql);

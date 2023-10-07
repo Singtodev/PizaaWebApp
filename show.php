@@ -1,11 +1,11 @@
 <?php
-
+    session_start();
     if(!isset($_GET['f_id'])){
         header("Location: index.php");
         exit(0);
     }
 
-    session_start();
+
     include_once('./utils/condb.php');
     include_once('./components/view/navbar.php');
     include_once('./components/view/sidebar.php');
@@ -54,7 +54,8 @@
             JOIN    food_type ON food.ftid = food_type.ftid
             JOIN    food_size ON food.fsid = food_size.fsid
             JOIN    food_crust ON food.fcid = food_crust.fcid
-            WHERE   food.fid = ?";
+            WHERE   food.fid = ?
+            ";
 
             $stmt = $condb->prepare($sql);
             $stmt->bind_param('s',$_GET['f_id']);
@@ -86,8 +87,8 @@
                             <div class="w-full h-[30rem] bg-cover bg-no-repeat object-cover rounded-md bg-center bg-[url('<?php echo $row['image']?>')]"></div>
                             <div class="flex flex-col gap-y-4 min-h-[5rem]">
                                 <div class="text-md"><?= $row['description'] ?></div>
-                                <div class="text-md">ประเภท: <?= $row['f_type_name']?></div>
-                                <div class="text-md">ราคาเริ่มต้น: <span class="text-black"> <?= $row['price_start']?> ฿</span></div>
+                                <div class="text-xl">ประเภท: <?= $row['f_type_name']?></div>
+                                <div class="text-xl px-4 justify-end flex">ราคาเริ่มต้น: <span class="text-red-500 px-2"> <?= $row['price_start']?></span> ฿ </div>
                             </div>
                         </div>
 
@@ -105,7 +106,12 @@
         <?php
             if($result->num_rows == 0){ ?>
                 <div class="text-center items-center justify-center py-4">Oops!..  ไม่เจอพิซซ่าที่คุณค้นหากรุณาลองใหม่อีกครั้ง</div>
-            <?php }?>
+        <?php }?>
+
+
+        <?php
+            include_once('./utils/toggle_menu.php');
+         ?>
 
     </body>
     

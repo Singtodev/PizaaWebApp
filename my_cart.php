@@ -54,15 +54,13 @@
                                         <div class="w-full min-h-[20rem] hover:scale-105 bg-gray-100 rounded-md transition-all duration-300 flex flex-col ">
              
                                                 <div class="bg-[url('<?= $item['image'] ?>')] h-[14rem] w-full object-cover bg-cover  bg-no-repeat"></div>
-
-
                                                 <div class="py-2 font-bold w-full flex items-center justify-center">
                                                     <div class="w-[20rem]">
                                                         <div class="name"><?= $item['name'] ?></div>
                                                         <div class="size_name">Pizza Size : <?= $item['size_name'] ?></div>   
                                                         <div class="quantity">Quantity : <?= $item['quantity'] ?></div>   
                                                         <div class="price">Total : <?= $item['total'] ?> THB </div>  
-                                                        <div class="w-full py-2 bg-red-500 text-center  text-white mt-2 rounded-md">ลบออกจากตระกร้า</div>
+                                                        <div class="w-full py-2 bg-red-500 text-center  text-white mt-2 rounded-md cursor-pointer">หยิบออกจากตระกร้า</div>
                                                     </div>
 
                                                 </div>

@@ -116,7 +116,8 @@
                             JOIN food_type ON food.ftid = food_type.ftid
                             JOIN food_size ON food.fsid = food_size.fsid
                             JOIN food_crust ON food.fcid = food_crust.fcid
-                            ORDER BY food.fid";
+                            ORDER BY food.fid DESC
+                            ";
                             
                         $result = $condb->query($sql);
                         

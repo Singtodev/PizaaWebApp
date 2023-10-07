@@ -54,6 +54,7 @@ class NavbarComponent {
             AND   order_amount.fcid = food_crust.fcid
             AND   order_amount.fsid = food_size.fsid
             AND   order_amount.oid = ?
+            order by odid DESC
             ";
         $stmt = $this->condb->prepare($sql);
         $stmt->bind_param('i', $data['oid']);
