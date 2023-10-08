@@ -6,6 +6,7 @@ class NavbarComponent {
     public $cartItemCount = 0;
     public $cartItems = [];
     public $cartItemsSumTotal = 0;
+    public $oid = 0;
 
     public function __construct($condb) {
         $this->condb = $condb;
@@ -58,6 +59,7 @@ class NavbarComponent {
             AND   order_amount.oid = ?
             order by odid DESC
             ";
+        $this->oid = $data['oid'];
         $stmt = $this->condb->prepare($sql);
         $stmt->bind_param('i', $data['oid']);
         if ($stmt->execute()) {
@@ -100,6 +102,10 @@ class NavbarComponent {
 
     public function getCartItemTotal(){
         return $this->cartItemsSumTotal;
+    }
+
+    public function getOid(){
+        return $this->oid;
     }
 
     public function build() {

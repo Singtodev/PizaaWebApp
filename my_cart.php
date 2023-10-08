@@ -31,8 +31,6 @@
                     $sidebarComponent = new SidebarComponent();
                     echo $sidebarComponent->build();
                 ?>
-
-
     </div>
 
     <div class="mx-auto lg:w-full lg:mx-0">
@@ -48,94 +46,170 @@
 
                 <div class="max-w-[72rem] mx-auto min-h-[30rem] bg-gradient-to-r from-[#131921] lg:mb-14 py-10 px-10">
                         <div class="text-3xl text-white">ตระกร้าสินค้าของฉัน <?php echo count($cartItems) == 0 ? '(ไม่มีสินค้าในตระกร้า)' : '' ?></div>
-                        <div class="grid grid-cols-3 gap-4 py-2">
-                        <?php
+                        <div class="grid grid-cols-3 gap-x-3">
 
-                            $sizes = array();
-                            $crusts = array();
+                            <div class="col-span-2 grid grid-cols-3 gap-4 py-2">
+                                    <?php
 
-                            $sql = "SELECT * FROM food_size";
-                            $result = $condb->query($sql);
+                                        $sizes = array();
+                                        $crusts = array();
 
-                            while($row = $result->fetch_assoc()){
-                                array_push($sizes , $row);
-                            }         
-                            
-                            $sql = "SELECT * FROM food_crust";
-                            $result = $condb->query($sql);
+                                        $sql = "SELECT * FROM food_size";
+                                        $result = $condb->query($sql);
 
-                            while($row = $result->fetch_assoc()){
-                                array_push($crusts , $row);
-                            }         
-                        ?>
-                        <?php
-                                foreach($cartItems as $item) { ?>
-                
-                                        <div class="w-full min-h-[20rem] hover:scale-105 bg-gray-100 rounded-md transition-all duration-300 flex flex-col ">
-             
-                                                <div class="bg-[url('<?= $item['image'] ?>')] h-[14rem] w-full object-cover bg-cover  bg-no-repeat"></div>
-                                                <div class="py-2 font-bold w-full flex items-center justify-center">
-                                                    <div class="w-[20rem]">
-                                                        <div class="name"><?= $item['name'] ?></div>
+                                        while($row = $result->fetch_assoc()){
+                                            array_push($sizes , $row);
+                                        }         
+                                        
+                                        $sql = "SELECT * FROM food_crust";
+                                        $result = $condb->query($sql);
 
-
-                                                        <div class="size">
-                                                            ขนาดพิซซ่า : 
-                                                            <select id="<?= $item['odid']?>" class="sizeItem">
-                                                                <?php
-                                                                    foreach($sizes as $size){ ?>
-                                                                        <option <?php echo ($size['fsid'] == $item['o_fsid']) ? 'selected' : '' ?>  value="<?php echo $size['fsid']?>"><?php echo $size['name'] ?></option>
-                                                                    <?php } ?>
-                                                                
-                                                            </select>
-                                                        </div>   
+                                        while($row = $result->fetch_assoc()){
+                                            array_push($crusts , $row);
+                                        }         
+                                    ?>
+                                    <?php
+                                        foreach($cartItems as $item) { ?>
+                        
+                                                <div class="w-full h-[25rem] hover:scale-105 bg-gray-100 rounded-md transition-all duration-300 flex flex-col ">
+                                                        <div class="rounded-t-lg bg-[url('<?= $item['image'] ?>')] h-[14rem] w-full object-cover bg-cover bg-center  bg-no-repeat"></div>
+                                                        <div class="py-2 font-bold w-full flex items-center justify-center">
+                                                            <div class="w-[20rem] p-2">
+                                                                <div class="name"><?= $item['name'] ?></div>
 
 
-                                                        <div class="crust">
-                                                            ขอบพิซซ่า : 
-                                                            <select id="<?= $item['odid']?>" class="crustItem">
-                                                                <?php
-                                                                    foreach($crusts as $crust){ ?>
-                                                                        <option <?php echo ($crust['fcid'] == $item['o_fcid']) ? 'selected' : '' ?>  value="<?php echo $crust['fcid']?>"><?php echo $crust['name'] ?></option>
-                                                                    <?php } ?>
-                                                            </select>
-                                                        </div>   
+                                                                <div class="size">
+                                                                    ขนาดพิซซ่า : 
+                                                                    <select id="<?= $item['odid']?>" class="sizeItem">
+                                                                        <?php
+                                                                            foreach($sizes as $size){ ?>
+                                                                                <option <?php echo ($size['fsid'] == $item['o_fsid']) ? 'selected' : '' ?>  value="<?php echo $size['fsid']?>"><?php echo $size['name'] ?></option>
+                                                                            <?php } ?>
+                                                                        
+                                                                    </select>
+                                                                </div>   
+
+
+                                                                <div class="crust">
+                                                                    ขอบพิซซ่า : 
+                                                                    <select id="<?= $item['odid']?>" class="crustItem">
+                                                                        <?php
+                                                                            foreach($crusts as $crust){ ?>
+                                                                                <option <?php echo ($crust['fcid'] == $item['o_fcid']) ? 'selected' : '' ?>  value="<?php echo $crust['fcid']?>"><?php echo $crust['name'] ?></option>
+                                                                            <?php } ?>
+                                                                    </select>
+                                                                </div>   
 
 
 
-                                                        <div class="quantity flex flex-row gap-x-2">
-                                                            จำนวน : 
-                                                            <div value="<?= $item['odid'] ?>" class=" decreaseItem bg-gray-200 px-2 rounded-md cursor-pointer"> - </div>
-                                                                <?= $item['quantity'] ?>
-                                                            <div value="<?= $item['odid'] ?>" class=" increaseItem bg-gray-200 px-2 rounded-md cursor-pointer"> + </div>
-                                                        </div>   
-                                                        <div class="price">ราคา : <?= $item['total'] ?> THB</div>  
-                                                        <div value="<?= $item['odid'] ?>" class="removeItem w-full py-2 bg-red-500 text-center  text-white mt-2 rounded-md cursor-pointer">ลบสินค้าออกจากตระกร้า</div>
-                                                    </div>
+                                                                <div class="quantity flex flex-row gap-x-2">
+                                                                    จำนวน : 
+                                                                    <div value="<?= $item['odid'] ?>" class=" decreaseItem bg-gray-200 px-2 rounded-md cursor-pointer"> - </div>
+                                                                        <?= $item['quantity'] ?>
+                                                                    <div value="<?= $item['odid'] ?>" class=" increaseItem bg-gray-200 px-2 rounded-md cursor-pointer"> + </div>
+                                                                </div>   
+                                                                <div class="price">ราคา : <?= $item['total'] ?> THB</div>  
+                                                                <div value="<?= $item['odid'] ?>" class="removeItem w-full py-2 bg-red-500 text-center  text-white mt-2 rounded-md cursor-pointer">ลบ</div>
+                                                            </div>
+                                                        </div>
+                        
                                                 </div>
-                   
+            
+                                        <?php } ?>
+                            </div>
+
+   
+                                <?php
+                                if(count($cartItems) > 0){ ?>
+                               <div class="bg-white rounded-md">
+                                    <div class="flex flex-col gap-2 mt-6 p-2">
+
+
+                                        <div class="text-center text-xl font-bold pb-6">ข้อมูลการจัดส่ง</div>
+
+                                        <div class="my-2 flex flex-col gap-y-2">
+
+                                        <?php
+                                        
+                                            if($_SESSION['user_data']){ ?>
+
+                                            <div class="text-md text-black  border rounded-md border-gray-200 grid grid-cols-3">
+                                                <div class="bg-gray-100 text-center">ชื่อผู้รับ</div>
+                                                <input
+                                                    id="recipient_name"
+                                                    value="<?= $_SESSION['user_data']['name'] ?>"
+                                                    type="text" 
+                                                    name="recipient_name"
+                                                    placeholder="ระบุชื่้อผู้รับ"
+                                                    class="w-full outline-none col-span-2 px-1">
+                                            </div>
+                                            <div class="text-md text-black  border rounded-md border-gray-200 grid grid-cols-3">
+                                                <div class="bg-gray-100 text-center">เบอร์โทรศัพท์</div>
+                                                <input 
+                                                    id="recipient_phone"
+                                                    value="<?= $_SESSION['user_data']['phone'] ?>"
+                                                    type="text" 
+                                                    min="0"
+                                                    max="10"
+                                                    name="recipient_phone" 
+                                                    placeholder="ระบุเบอร์โทรศัพทย์ผู้รับ"
+                                                    class="w-full outline-none col-span-2 px-1">
+                                            </div>
+                                            <div class="text-md text-black  border rounded-md border-gray-200 grid grid-cols-3">
+                                                <div class="bg-gray-100 text-center">ที่อยู่จัดส่ง</div>
+                                                <input
+                                                    id="recipient_address"
+                                                    value="<?= $_SESSION['user_data']['address'] ?>"
+                                                    type="text" 
+                                                    name="recipient_address" 
+                                                    placeholder="ระบุที่อยู่การจัดส่ง"
+                                                    class="w-full outline-none col-span-2 px-1">
+                                            </div>
+
+                                            <?php } ?>
+
+
+
                                         </div>
-    
-                                <?php } ?>
-                         </div>
 
-                         <?php
 
-                            if(count($cartItems) > 0){ ?>
-                                <div class="text-white text-xl my-6"> เลือกช่องทางชำระเงิน</div>
-                                <div class="grid grid-cols-2 gap-2 mt-6">
-                                       <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบเงินสด (Cash)</div>
-                                       <div class="border border-gray-300 text-xl py-4 text-center bg-gray-200 rounded-md hover:border-black cursor-pointer border-2">จ่ายแบบสแกน (QR Code)</div>
-                                </div>
-                               
-                               <div class="flex flex-col gap-2 mt-6">
-                                   <div class="text-white text-xl"> ราคารวมทั้งหมด <?php echo $sumTotal ?> THB</div>
-                                   <div class="bg-lime-500 text-white w-full max-w-[30rem] hover:bg-opacity-50 transition-all duration-300 py-1 rounded-md px-2 cursor-pointer text-center">ชำระเงิน</div>
+                                        <div class="text-center text-xl font-bold pb-6">สรุปรายการอาหาร</div>
+                                        <?php
+                                            foreach($cartItems as $item) { ?>
+                                                <div class="grid grid-cols-3 px-4 text-xs text-gray-400  border-b-2 py-1">
+                                                    <div class="col-span-2"> * <?php echo $item['name'] ?></div>
+                                                    <div>  x <?php echo $item['quantity'] ?>  ( <?php echo $item['total'] ?>) THB</div>
+                                                </div>
+                                        <?php } ?>
+
+
+
+                                        <div class="my-2">
+                                                <div class="text-md text-center text-black py-2 ">เลือกช่องทางชำระเงิน</div>
+                                                <div class="flex flex-row justify-center gap-x-2 py-2">
+                                                    <input type="radio" selected="false" name="payment" id="Cash" class="payment px-2 border-2 rounded-md cursor-pointer">Cash</input>
+                                                    <input type="radio" selected="false" name="payment" id="QR Code" class="payment px-2 border-2 rounded-md cursor-pointer">QR Code</input>
+                                                </div>
+                                        </div>                            
+
+                                        <div class="my-2 ">
+                                            <div class="text-md text-center text-black">สินค้าจำนวน ( <span class="text-lg"><?php echo count($cartItems) ?></span> ) รายการ</div>
+                                            <div class="text-md text-center text-black"> ราคารวมทั้งหมด <span class="text-lg"><?php echo $sumTotal ?></span> THB</div>
+                                            <div class="payment_submit mt-4 bg-lime-500 text-white w-full max-w-[30rem] hover:bg-opacity-50 transition-all duration-300 py-1 rounded-md px-2 cursor-pointer text-center">ชำระเงิน</div>
+                                        </div>
+
+                                    </div>
                                </div>
-                            <?php } ?>
+                                <?php } ?>
 
 
-                </div>
+                        </div>
+
+
+
+
+
+                        </div>
 
 
 
@@ -146,7 +220,8 @@
 
 
     <script>
-
+            
+            var oid = <?php echo $navbarComponent->getOid(); ?>
 
             function getAllValueInCheckBoxSize(hook){
                 var x = document
@@ -163,8 +238,6 @@
                 }
                 return {active , all_keys};
             }
-
-
 
             function removeItemById(odid){
                 $.ajax({
@@ -190,7 +263,7 @@
                                 }
                                 setTimeout(() => {
                                     window.location.reload();
-                                }, 1500);
+                                }, 500);
                         },
                         error: function() {
                             console.log("remove item error");
@@ -256,8 +329,96 @@
             }
 
 
+            function getMethodPayment () {
+                var allPaymentChoice = document.querySelectorAll('.payment');
+                var result = null;
+                for(let i = 0 ; i < allPaymentChoice.length; i++ ){
+
+                    if(allPaymentChoice[i].attributes.selected.value == "true"){
+                        result = allPaymentChoice[i].attributes.id.value;
+                    }
+                }
+
+                return result;
+            }
+
             $(document).ready(function(){
                 
+                $('.payment_submit').click(async (e)=> {
+                    var method = await getMethodPayment();
+
+                    if(method == null){
+                        Swal.fire(
+                            'ไม่สำเร็จ!',
+                            'กรุณาเลือกช่องทางชำระเงิน',
+                            'error'
+                        )
+                    }else{
+
+                        var recipient_name = document.getElementById("recipient_name");
+                        var recipient_phone = document.getElementById("recipient_phone");
+                        var recipient_address = document.getElementById("recipient_address");
+                        $.ajax({
+                            url: './query/pizza_submit.php',
+                            method: 'GET',
+                            data: { 
+                                oid : oid,
+                                payment_method: method,
+                                recipient_address: recipient_address.value,
+                                recipient_phone: recipient_phone.value,
+                                recipient_name: recipient_name.value
+                            },
+                            success: function(response) {   
+                                var data = JSON.parse(response);
+                                console.log(data)
+                                if(data.status == 200){
+                                    Swal.fire(
+                                        'สำเร็จ!',
+                                         data.message,
+                                        'success'
+                                    )
+                                }else{
+                                    Swal.fire(
+                                        'ไม่สำเร็จ!',
+                                         data.message,
+                                        'error'
+                                    )
+                                }
+                                setTimeout(() => {
+                                    window.location.href= "history.php";
+                                }, 500);
+                            },
+                            error: function(err) {
+                                console.log(err);
+                            }
+                        });
+
+
+                        Swal.fire(
+                            'สำเร็จ!',
+                            'รอการตรวจสอบจากผู้ดูแลระบบ',
+                            'success'
+                        )
+                    }
+
+                })
+
+
+                $('.payment').click((e)=> {
+                    var allPaymentChoice = document.querySelectorAll('.payment');
+                    
+                    // loop clear active
+                    for(let i = 0 ; i < allPaymentChoice.length; i++ ){
+                        // set all payment method to false
+                        // unselect all
+                        allPaymentChoice[i].attributes.selected.value = "false";
+                    }
+
+                    // set selected value
+                    e.target.attributes.selected.value = "true";
+
+                })
+
 
                 $(".removeItem").click( (e) => {
                     var odid = e.target.attributes.value.value;
@@ -316,6 +477,7 @@
 
                 });
             });
+
 
     </script>
 

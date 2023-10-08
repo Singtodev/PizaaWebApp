@@ -5,6 +5,7 @@
     include_once('./components/view/navbar.php');
     include_once('./components/view/sidebar.php');
     $result;
+    
     if(isset($_SESSION['user_data'])){
         $sql = "select * from iorder where uid = ? and status != 1 order by oid desc";
         $stmt = $condb->prepare($sql);
@@ -60,7 +61,7 @@
                 <div class="h-auto pb-6 pt-4  ">
                     <div>Order ID <?= $row['oid'] ?> </div>
                     <div class="flex flex-row gap-x-2  ">
-                        <div><?= $row['status'] == 3 ?  'ราคาทั้งหมด ' . $row['total'] : '' ?></div>
+                        <div>ยอดรวม <?= $row['total'] ?> THB </div>
                     </div>
                     <div class="flex flex-row gap-x-2  ">
                         <div><?= getThaiDateWithTime($row['odate']) ?></div>
