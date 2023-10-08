@@ -47,7 +47,9 @@ class NavbarComponent {
     }
 
     public function queryItemCart($data) {
-            $sql = "SELECT oid,food.name, food.image as image, food_size.name as size_name ,food_crust.name as crust_name ,order_amount.amount as quantity ,((food_type.price + food_crust.price + food_size.price) * order_amount.amount) as total
+            $sql = " SELECT odid,order_amount.fsid  as o_fsid, order_amount.fcid as o_fcid , oid,
+                     food.name, food.image as image, food_size.name as size_name ,food_crust.name as crust_name ,
+                     order_amount.amount as quantity ,((food_type.price + food_crust.price + food_size.price) * order_amount.amount) as total
             FROM  order_amount ,food, food_crust ,food_size , food_type
             WHERE order_amount.fid = food.fid
             AND   food.ftid = food_type.ftid
@@ -112,13 +114,13 @@ class NavbarComponent {
                         </div>
                 </a>
                     </div>
-                    <div class="w-[40%] lg:w-[60%]">
-                        <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
-                            <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="Search Pizza" name="search" />
-                            <div class="w-[3rem] h-full absolute left-0 top-0 flex items-center text-gray-500 justify-center bg-gray-300 rounded-tl-lg">All</div>
-                            <div class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300 text-white">Search</div>
-                        </div>
-                    </div>
+                    <form action="search_product.php" method="get" class="w-[40%] lg:w-[60%]">
+                            <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
+                                <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="Search Pizza" name="search" />
+                                <div class="w-[3rem] h-full absolute left-0 top-0 flex items-center text-gray-500 justify-center bg-gray-300 rounded-tl-lg">All</div>
+                                <button class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300 text-white">Search</button>
+                            </div>
+                    </form>
                     <div class="w-[30%] lg:w-[20%]">
                         <div class="relative flex items-center px-4 w-full h-full text-white">
                             <div class="relative">
