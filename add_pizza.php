@@ -249,28 +249,30 @@
                             },
                             success: function(response) {   
                                 var data = JSON.parse(response);
+                                console.log(data);
+
                                 if(data.status == 200){
                                     Swal.fire(
                                         'สำเร็จ!',
-                                        'คุณเพิ่มสินค้าลงตระกร้าเรียบร้อย!',
+                                        data.message,
                                         'success'
                                     )
                                 }else{
                                     Swal.fire(
                                         'ไม่สำเร็จ!',
                                         'เพิ่มไม่สำเร็จเกิดปัญหาบางอย่าง',
-                                        'danger'
+                                        'error'
                                     )
                                 }
 
                                 setTimeout(() => {
                                     window.location.href = "my_cart.php";
-                                }, 1500);
+                                }, 2500);
 
 
                             },
-                            error: function() {
-                                console.log("filter error");
+                            error: function(err) {
+                                console.log(err);
                             }
                     });
                 }

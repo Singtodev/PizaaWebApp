@@ -9,7 +9,7 @@
 
     $final_result = array();
 
-    if($_GET['fsid'] && $_GET['fid'] && $_GET['fcid']){
+    if(isset($_GET['fsid']) && isset($_GET['fid']) && isset($_GET['fcid'])){
 
         // TODO 
         // query data food and total price
