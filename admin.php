@@ -41,7 +41,7 @@
                 ?>
     </div>
 
-    <div class="max-w-[60rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
+    <div class="max-w-[85rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
         <div class="title text-2xl text-right py-4 px-4 ">หน้าผู้ดูแลระบบ</div> 
 
 
@@ -82,15 +82,17 @@
 
 
         <div class="grid grid-cols-1">
-                    <div class="w-full grid grid-cols-6 py-4">
+                    <div class="w-full grid grid-cols-7 py-4">
                             <div class="px-1"># รหัสออเดอร์ </div>
                             <div class="px-1"># รหัสลูกค้า  </div>
+                            <div class="px-1"># ที่อยู่จัดส่ง  </div>
                             <div class="px-1"># วันที่ </div>
                             <div class="px-1"></div>
                             <div class="px-1"># จำนวนเงิน </div>
                             <div class="px-1">Action</div>
                     </div>
             <?php 
+
                 $sql = "SELECT * 
                         FROM  iorder , user
                         where iorder.uid = user.uid
@@ -98,10 +100,15 @@
                         order by odate";
                 $result = $condb->query($sql);
                 $i = 0;
-                while($row = $result->fetch_assoc()){  $i++ ?>
-                    <div class="w-full grid grid-cols-6 py-4 <?php echo ($i % 2 == 0 ? 'bg-white' : 'bg-gray-200'); ?>">
+                while($row = $result->fetch_assoc()){
+                    
+                    print_r($row);
+                    
+                    $i++ ?>
+                    <div class="w-full grid grid-cols-7 py-4 <?php echo ($i % 2 == 0 ? 'bg-white' : 'bg-gray-200'); ?>">
                             <div class="px-1 whitespace-nowrap"><?php echo $row['oid'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['uid'] ?></div>
+                            <div class="px-1 whitespace-nowrap"><?php echo $row['recipient_address'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo getThaiDateWithTime($row['odate']) ?></div>
                             <div class="px-1"></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['total'] ?></div>
