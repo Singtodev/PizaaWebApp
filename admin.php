@@ -175,7 +175,7 @@
                  </div>
                 <div data-name="3" class="menu-select rounded-md transition-all duration-300 px-3 border-r cursor-pointer ">
                     สำเร็จแล้ว
-                    <?php echo count($done) > 0 ? '<span class="bg-red-500 mx-2 rounded-md px-2 text-white">' . count($done).'</span>' : ''  ?>
+                    <?php echo count($done) > 0 ? '<span class=" mx-2 rounded-md px-2 text-black">' . count($done).'</span>' : ''  ?>
  
                 </div>
         </div>
