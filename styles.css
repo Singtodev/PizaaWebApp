@@ -5,3 +5,8 @@
 .toggle_menu.active {
     transform: translateX(0px);
 }
+
+.btn-active {
+    background-color: gray;
+    color: white;
+}
