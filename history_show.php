@@ -108,7 +108,7 @@
                             </div>
                         <div class="text-md flex items-center  justify-center"> 
                             <div class="flex flex-col">
-                                   รวมทั่้งหมด<span class="text-xs text-slate-600"><?= $item['total'] ?> THB</span> 
+                                   รวม<span class="text-xs text-slate-600"><?= $item['total'] ?> THB</span> 
                             </div>
                             
                         </div>
