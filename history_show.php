@@ -70,7 +70,7 @@
     <div class="max-w-[60rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
 
         <div class="flex flex-row justify-between my-5">
-            <div class="title text-xl text-left ">Billing ID <?= $_GET['oid']?></div> 
+            <div class="title text-xl text-left ">Bill ID <?= $_GET['oid']?></div> 
             <div class="flex text-xl flex-row gap-x-2">ยอดรวมทั้งหมด <div><?php echo $totals ?> THB</div></div>
         </div>
 
@@ -82,10 +82,15 @@
             foreach($items as $item){ ?>
                     <div class="w-full grid grid-cols-4 h-[10rem]">
                         <div class="bg-cover object-contain bg-no-repeat bg-center rounded-md my-2 bg-[url('<?php echo $item['image'] ?>')]"></div>
-                        <div class="text-md flex items-center  justify-center"><?= $item['name'] ?></div>
+                        <div class="text-md flex flex-row flex-wrap items-center justify-center px-5">
+                        <?=$item["name"]?> 
+                        ขนาดไซด์ <?= $item['size_name'] ?>
+                        ขอบ <?= $item['crust_name'] ?>
+                        </div>
                         <div class="text-md flex items-center  justify-center"> x <?= $item['quantity'] ?></div>
                         <div class="text-md flex items-center  justify-center"> <?= $item['total'] ?> THB</div>
                     </div>
+                    
             <?php } ?>
 
 
