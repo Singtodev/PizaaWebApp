@@ -16,7 +16,7 @@ class SidebarComponent {
             echo '<a href="./history.php">';
             echo '<div class="rounded-md p-2 hover:bg-gray-200 bg-opacity-50 text-left">ประวัติรายการสั่งซื้อ</div>';
             echo '</a>';
-            echo '<div class="rounded-md p-2 hover-bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>';
+            // echo '<div class="rounded-md p-2 hover-bg-gray-200 bg-opacity-50 text-left">ตั้งค่าบัญชี</div>';
         }
 
         if(isset($_SESSION['user_data']) && $_SESSION['user_data']['role'] == '2'){

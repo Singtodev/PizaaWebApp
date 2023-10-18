@@ -122,7 +122,7 @@ class NavbarComponent {
                     </div>
                     <form action="search_product.php" method="get" class="w-[40%] lg:w-[60%]">
                             <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
-                                <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="Search Pizza" name="search" />
+                                <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="ค้นหาหน้าพิซ๋า" name="search" />
                                 <div class="w-[3rem] h-full absolute left-0 top-0 flex items-center text-gray-500 justify-center bg-gray-300 rounded-tl-lg">All</div>
                                 <button class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300 text-white">Search</button>
                             </div>

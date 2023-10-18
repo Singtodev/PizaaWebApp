@@ -45,7 +45,7 @@
     <div class="max-w-[80rem] lg:max-w-[110rem] mx-auto lg:py-14 mb-8">
 
                 <div class="max-w-[72rem] mx-auto min-h-[30rem] bg-gradient-to-r from-[#131921] lg:mb-14 py-10 px-10">
-                        <div class="text-3xl text-white">ตระกร้าสินค้าของฉัน <?php echo count($cartItems) == 0 ? '(ไม่มีสินค้าในตระกร้า)' : '' ?></div>
+                        <div class="text-3xl text-white">ตระกร้าของฉัน <?php echo count($cartItems) == 0 ? '(ไม่มีสินค้าในตระกร้า)' : '' ?></div>
                         <div class="grid grid-cols-3 gap-x-3">
 
                             <div class="col-span-2 grid grid-cols-3 gap-4 py-2">
