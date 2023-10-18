@@ -49,19 +49,19 @@
         <div class="my-2 mb-10">
             <div class="title text-xl text-left py-4 px-4 ">รายงานผลรวม</div> 
             <?php
-            $sql_day = "SELECT SUM(amount) AS total 
+            $sql_day = "SELECT coalesce(SUM(amount),0) AS total 
                        FROM iorder ,order_amount 
                        where order_amount.oid = iorder.oid 
                        and DATE(iorder.odate) = DATE(CURDATE()) 
                        AND status = 3";
 
-            $sql_month = "SELECT SUM(amount) AS total 
+            $sql_month = "SELECT coalesce(SUM(amount),0) AS total 
             FROM iorder ,order_amount 
             where order_amount.oid = iorder.oid 
             and MONTH(iorder.odate) = MONTH(CURDATE()) 
             AND status = 3";
 
-            $sql_year= "SELECT SUM(amount) AS total 
+            $sql_year= "SELECT coalesce(SUM(amount),0) AS total 
             FROM iorder ,order_amount 
             where order_amount.oid = iorder.oid 
             and YEAR(iorder.odate) = YEAR(CURDATE()) 
