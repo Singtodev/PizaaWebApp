@@ -147,30 +147,6 @@ $(document).ready(function(){
                       }
         });
     })
-
-    $(".menu-select").click((e) => {
-        var id = e.currentTarget.attributes['data-name'].value;
-        $.ajax({
-            url: './query/pizza_admin_table.php',
-            method: 'GET',
-            data: { 
-                show_id: id
-            },
-            success: function(response) {   
-                // replace data table
-                $('#pizza_admin_table').html(response);
-            },
-            error: function() {
-                console.log("filter error");
-            }
-        });
-
-        // remove navbar active
-        removeAllActiveMenu();
-
-        // set active index
-        e.currentTarget.classList.add("btn-active");
-    });
 });
 
 

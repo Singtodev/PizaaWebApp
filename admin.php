@@ -42,7 +42,7 @@
                 ?>
     </div>
 
-    <div class="max-w-[85rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
+    <div class="max-w-[74rem] bg-white py-2 my-2 mx-auto px-4 rounded-md">
         <div class="title text-2xl text-right py-4 px-4 ">หน้าผู้ดูแลระบบ</div> 
 
 
@@ -78,30 +78,26 @@
             
             ?>
             <div class="grid grid-cols-3 h-[10rem] gap-4 my-4">
-                <div class="bg-gray-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นวันนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_day['total'] ?> รายการ</div>
                 </div>
-                <div class="bg-orange-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นเดือนนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_month['total'] ?> รายการ</div>
                 </div>
-                <div class="bg-yellow-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นปีนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_year['total'] ?> รายการ</div>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-3 h-[10rem] gap-4">
 
                 <?php
-
                     $sql_day = "SELECT  coalesce(SUM(total) , 0) AS total
                     FROM iorder
                     WHERE DATE(odate) = DATE(CURDATE())
                     AND status = 3
                     ";
-                
+
                     $sql_month = "SELECT coalesce(SUM(total) , 0) AS total
                     FROM iorder
                     WHERE MONTH(odate) = MONTH(CURDATE())
@@ -125,22 +121,21 @@
 
                 ?>
 
-
-                <div class="bg-gray-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายวันนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_day['total'] ?> THB</div>
                 </div>
-                <div class="bg-orange-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายเดือนนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_month['total'] ?> THB</div>
                 </div>
-                <div class="bg-yellow-300 p-2 shadow-xl" >
+                <div class="bg-white p-2 shadow-xl" >
                         <div class="mx-2 text-2xl">ยอดขายปีนี้</div>
                         <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_year['total'] ?> THB</div>
                 </div>
+            </div>
 
-
-
+            <div class="grid grid-cols-3 h-[5rem] gap-4">
             </div>
         </div>
 
