@@ -12,7 +12,11 @@
         $sql = " SELECT odid,order_amount.fsid  as o_fsid, order_amount.fcid as o_fcid , order_amount.oid,
                  food.name, food.image as image, food_size.name as size_name ,food_crust.name as crust_name ,
                  order_amount.amount as quantity ,((food_type.price + food_crust.price + food_size.price) * order_amount.amount) as total,
-                 iorder.recipient_name as recipient_name , iorder.recipient_phone as recipient_phone,iorder.recipient_address as recipient_address
+                 iorder.recipient_name as recipient_name , iorder.recipient_phone as recipient_phone,iorder.recipient_address as recipient_address,
+                 food_size.price as food_size_price,
+                 food_crust.price as food_crust_price,
+                 food_type.price as food_type_price
+
                  FROM  order_amount ,food, food_crust ,food_size , food_type, iorder
                  WHERE order_amount.fid  = food.fid
                  AND   food.ftid         = food_type.ftid
@@ -80,15 +84,34 @@
         <?php
 
             foreach($items as $item){ ?>
-                    <div class="w-full grid grid-cols-4 h-[10rem]">
+                    <div class="w-full grid grid-cols-5 h-[10rem]">
                         <div class="bg-cover object-contain bg-no-repeat bg-center rounded-md my-2 bg-[url('<?php echo $item['image'] ?>')]"></div>
-                        <div class="text-md flex flex-row flex-wrap items-center justify-center px-5">
-                        <?=$item["name"]?> 
-                        ขนาดไซด์ <?= $item['size_name'] ?>
-                        ขอบ <?= $item['crust_name'] ?>
+                        <div class="text-md flex flex-col flex-wrap  justify-center px-5">
+                            <div class="flex flex-col">
+                                <?=$item["name"]?> <span class="text-xs text-slate-600">+ (<?= $item['food_type_price'] ?>)</span>
+                            </div>
+                            <div class="flex flex-col">
+                                ขนาดไซด์ <?= $item['size_name'] ?> <span class="text-xs text-slate-600">+ (<?= $item['food_size_price'] ?>)</span> 
+                            </div>
+                            <div class="flex flex-col">
+                                ขนาดขอบ <?= $item['crust_name'] ?> <span class="text-xs text-slate-600">+ (<?= $item['food_crust_price'] ?>)</span> 
+                            </div>
+
+                            
+
                         </div>
                         <div class="text-md flex items-center  justify-center"> x <?= $item['quantity'] ?></div>
-                        <div class="text-md flex items-center  justify-center"> <?= $item['total'] ?> THB</div>
+                        <div class="flex justify-center items-center">
+                                <div class="flex flex-col">
+                                    ราคาชิ้นละ <span class="text-xs text-slate-600"><?= ($item['total'] /  $item['quantity']) ?> THB</span> 
+                                </div>
+                            </div>
+                        <div class="text-md flex items-center  justify-center"> 
+                            <div class="flex flex-col">
+                                   รวมทั่้งหมด<span class="text-xs text-slate-600"><?= $item['total'] ?> THB</span> 
+                            </div>
+                            
+                        </div>
                     </div>
                     
             <?php } ?>
