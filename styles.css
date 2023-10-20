@@ -8,5 +8,5 @@
 
 .btn-active {
     background-color: gray;
-    color: white;
+    color: white !important;
 }

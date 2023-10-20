@@ -79,16 +79,16 @@
             ?>
             <div class="grid grid-cols-3 h-[10rem] gap-4 my-4">
                 <div class="bg-white p-2 shadow-xl" >
-                        <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นวันนี้</div>
-                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_day['total'] ?> รายการ</div>
+                        <div class="mx-2 text-2xl">ยอดขายพิซซ่าวันนี้</div>
+                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_day['total'] ?> ชิ้น</div>
                 </div>
                 <div class="bg-white p-2 shadow-xl" >
-                        <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นเดือนนี้</div>
-                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_month['total'] ?> รายการ</div>
+                        <div class="mx-2 text-2xl">ยอดขายพิซซ่าเดือนนี้</div>
+                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_month['total'] ?> ชิ้น</div>
                 </div>
                 <div class="bg-white p-2 shadow-xl" >
-                        <div class="mx-2 text-2xl">ยอดขายกี่ชิ้นปีนี้</div>
-                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_year['total'] ?> รายการ</div>
+                        <div class="mx-2 text-2xl">ยอดขายพิซซ่าปีนี้</div>
+                        <div class="mx-2 text-2xl mt-10 text-xl text-right"><?php echo $result_total_year['total'] ?> ชิ้น</div>
                 </div>
 
                 <?php
@@ -175,7 +175,7 @@
                  </div>
                 <div data-name="3" class="menu-select rounded-md transition-all duration-300 px-3 border-r cursor-pointer ">
                     สำเร็จแล้ว
-                    <?php echo count($done) > 0 ? '<span class=" mx-2 rounded-md px-2 text-black">' . count($done).'</span>' : ''  ?>
+                    <?php echo count($done) > 0 ? '<span class=" mx-2 rounded-md px-2">' . count($done).'</span>' : ''  ?>
  
                 </div>
         </div>
