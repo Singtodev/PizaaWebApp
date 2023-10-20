@@ -36,12 +36,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <div class="pizza_admin_table  grid grid-cols-1">
 
-            <div class="w-full grid grid-cols-7 py-4">
+            <div class="w-full grid grid-cols-8 py-4">
                             <div class="px-1"># รหัสออเดอร์ </div>
                             <div class="px-1"># ลูกค้า  </div>
                             <div class="px-1"># ที่อยู่จัดส่ง  </div>
                             <div class="px-1"># วันที่ </div>
                             <div class="px-1"></div>
+                            <div class="px-1"># ประเภทการชำระ</div>
                             <div class="px-1"># จำนวนเงิน </div>
                             <div class="px-1"></div>
             </div>
@@ -49,12 +50,13 @@
             <?php 
 
                 while($row = $result->fetch_assoc()){  $i++;  ?>
-                    <div class="w-full grid grid-cols-7 py-4 <?php echo ($i % 2 == 0 ? 'bg-gray-200'  : 'bg-white'  ); ?>">
+                    <div class="w-full grid grid-cols-8 py-4 <?php echo ($i % 2 == 0 ? 'bg-gray-200'  : 'bg-white'  ); ?>">
                             <div class="px-4 whitespace-nowrap"><?php echo $row['oid'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['name'] ?></div>
                             <div class="px-1 whitespace-wrap"><?php echo $row['recipient_address'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo getThaiDateWithTime($row['odate']) ?></div>
                             <div class="px-1"></div>
+                            <div class="px-1"><?php echo $row['payment_method'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['total'] ?></div>
                             <div class="inline-block flex items-center">
 

@@ -53,19 +53,19 @@
                        FROM iorder ,order_amount 
                        where order_amount.oid = iorder.oid 
                        and DATE(iorder.odate) = DATE(CURDATE()) 
-                       AND status = 3";
+                       AND iorder.status = 3";
 
             $sql_month = "SELECT coalesce(SUM(amount),0) AS total 
             FROM iorder ,order_amount 
             where order_amount.oid = iorder.oid 
             and MONTH(iorder.odate) = MONTH(CURDATE()) 
-            AND status = 3";
+            AND iorder.status = 3";
 
             $sql_year= "SELECT coalesce(SUM(amount),0) AS total 
             FROM iorder ,order_amount 
             where order_amount.oid = iorder.oid 
             and YEAR(iorder.odate) = YEAR(CURDATE()) 
-            AND status = 3";
+            AND iorder.status = 3";
 
             $sum_total_day = $condb->query($sql_day);
             $result_total_day = $sum_total_day->fetch_assoc();
@@ -185,12 +185,13 @@
                     <?php
                     
                     if(count($re_check) != 0){ ?>
-                        <div class="w-full grid grid-cols-7 py-4">
+                        <div class="w-full grid grid-cols-8 py-4">
                                 <div class="px-1"># รหัสออเดอร์ </div>
                                 <div class="px-1"># ลูกค้า  </div>
                                 <div class="px-1"># ที่อยู่จัดส่ง  </div>
                                 <div class="px-1"># วันที่ </div>
-                                <div class="px-1"></div>
+                                <div class="px-1"> </div>
+                                <div class="px-1"># ประเภทการชำระ</div>
                                 <div class="px-1"># จำนวนเงิน </div>
                                 <div class="px-1"></div>
                         </div>
@@ -204,12 +205,13 @@
 
             <?php 
                 foreach($re_check as $key=>$row){ ?>
-                    <div class="w-full grid grid-cols-7 py-4 <?php echo (($key + 1) % 2 == 0 ?  'bg-gray-200'  : 'bg-white' ) ; ?>">
+                    <div class="w-full grid grid-cols-8 py-4 <?php echo (($key + 1) % 2 == 0 ?  'bg-gray-200'  : 'bg-white' ) ; ?>">
                             <div class="px-4 whitespace-nowrap"><?php echo $row['oid'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['name'] ?></div>
                             <div class="px-1 whitespace-wrap"><?php echo $row['recipient_address'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo getThaiDateWithTime($row['odate']) ?></div>
                             <div class="px-1"></div>
+                            <div class="px-1"><?php echo $row['payment_method'] ?></div>
                             <div class="px-1 whitespace-nowrap"><?php echo $row['total'] ?></div>
                             <div class="inline-block flex items-center">
 
