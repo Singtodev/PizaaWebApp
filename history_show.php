@@ -94,7 +94,7 @@
                                 ขนาดไซด์ <?= $item['size_name'] ?> <span class="text-xs text-slate-600">+ (<?= $item['food_size_price'] ?>)</span> 
                             </div>
                             <div class="flex flex-col">
-                                ขนาดขอบ <?= $item['crust_name'] ?> <span class="text-xs text-slate-600">+ (<?= $item['food_crust_price'] ?>)</span> 
+                                ขอบ <?= $item['crust_name'] ?> <span class="text-xs text-slate-600">+ (<?= $item['food_crust_price'] ?>)</span> 
                             </div>
 
                             
