@@ -120,14 +120,14 @@ class NavbarComponent {
                         </div>
                 </a>
                     </div>
-                    <form action="search_product.php" method="get" class="w-[40%] lg:w-[60%]">
+                    <form action="search_product.php" method="get" class="w-[40%] lg:w-[50%]">
                             <div class="w-full h-full bg-white rounded-tl-lg rounded-md relative">
                                 <input type="text" class="w-full h-full px-16 outline-none rounded-md" placeholder="ค้นหาหน้าพิซ๋า" name="search" />
                                 <div class="w-[3rem] h-full absolute left-0 top-0 flex items-center text-gray-500 justify-center bg-gray-300 rounded-tl-lg">All</div>
                                 <button class="w-[5rem] cursor-pointer h-full absolute right-0 top-0 flex items-center justify-center text-gray-500 bg-orange-300 text-white">Search</button>
                             </div>
                     </form>
-                    <div class="w-[30%] lg:w-[20%]">
+                    <div class="w-[30%] lg:w-[30%]">
                         <div class="relative flex items-center px-4 w-full h-full text-white">
                             <div class="relative">
                                 ' . (isset($_SESSION['user_data']) && isset($_SESSION['user_data']['role']) && $_SESSION['user_data']['role'] != 2 ? '
@@ -136,9 +136,9 @@ class NavbarComponent {
                                     </a>
                                 ' : '') . '
                             </div>
-                            <div class="absolute right-10 flex flex-row gap-x-5 items-center">
+                            <div class="absolute right-10 flex flex-row gap-x-5 items-center text-sm">
                                 ' . (!isset($_SESSION['user_data']) ? '<a href="./login.php"><div class="cursor-pointer">Sign In</div></a>' : '') . '
-                                ' . (isset($_SESSION['user_data']) ? '<div>' . $_SESSION['user_data']['name'] . '</div><div class="w-[2.2rem] h-[2.2rem] rounded-full bg-cover object-cover bg-center bg-no-repeat" style="background-image: url(\'' . $_SESSION['user_data']['photo'] . '\');"></div>' : '') . '
+                                ' . (isset($_SESSION['user_data']) ? '<div class="flex flex-row gap-x-2 text-xs">' . $_SESSION['user_data']['name'] . '('. $_SESSION['user_data']['email']. ')'. '</div><div class="w-[2.2rem] h-[2.2rem] rounded-full bg-cover object-cover bg-center bg-no-repeat" style="background-image: url(\'' . $_SESSION['user_data']['photo'] . '\');"></div>' : '') . '
                                 <i class="toggle-menu-button fa-solid cursor-pointer fa-bars text-2xl"></i>
                             </div>
                         </div>

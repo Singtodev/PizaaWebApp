@@ -31,9 +31,14 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
+        $address = "";
+        $phone = "";
+
         while($row = $result->fetch_assoc()){
             array_push($items,$row);
             $totals += $row['total'];
+            $address = $row['recipient_address'];
+            $phone = $row['recipient_phone'];
         }
 
 
@@ -76,6 +81,11 @@
         <div class="flex flex-row justify-between my-5">
             <div class="title text-xl text-left ">Bill ID <?= $_GET['oid']?></div> 
             <div class="flex text-xl flex-row gap-x-2">ยอดรวมทั้งหมด <div><?php echo $totals ?> THB</div></div>
+        </div>
+
+        <div class="flex flex-col text-xs">
+            <div class="title text-md text-left "><?= $phone ?></div> 
+            <div class="title text-md text-left "><?= $address ?></div> 
         </div>
 
 

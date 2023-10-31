@@ -176,11 +176,15 @@
                                         <div class="text-center text-xl font-bold pb-6">สรุปรายการอาหาร</div>
                                         <?php
                                             foreach($cartItems as $item) { ?>
-                                                <div class="grid grid-cols-3 px-4 text-xs text-gray-400  border-b-2 py-1">
+                                                <div class="grid grid-cols-3 px-4 text-xs text-gray-700  border-b-2 py-1">
                                                     <div class="col-span-2"> * <?php echo $item['name'] ?></div>
                                                     <div>  x <?php echo $item['quantity'] ?>  ( <?php echo $item['total'] ?>) THB</div>
                                                 </div>
                                         <?php } ?>
+
+                                        <div class="grid grid-cols-3 px-4 text-xs text-gray-700  border-b-2 py-1">
+                                                    <div class="col-span-2"> + ค่าจัดส่ง 15 THB </div>
+                                        </div>
 
 
 
@@ -194,7 +198,7 @@
 
                                         <div class="my-2 ">
                                             <div class="text-md text-center text-black">สินค้าจำนวน ( <span class="text-lg"><?php echo count($cartItems) ?></span> ) รายการ</div>
-                                            <div class="text-md text-center text-black"> ราคารวมทั้งหมด <span class="text-lg"><?php echo $sumTotal ?></span> THB</div>
+                                            <div class="text-md text-center text-black"> ราคารวมทั้งหมด <span class="text-lg"><?php echo $sumTotal + 15 ?></span> THB</div>
                                             <div class="payment_submit mt-4 bg-lime-500 text-white w-full max-w-[30rem] hover:bg-opacity-50 transition-all duration-300 py-1 rounded-md px-2 cursor-pointer text-center">ชำระเงิน</div>
                                         </div>
 

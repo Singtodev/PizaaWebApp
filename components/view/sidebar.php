@@ -31,6 +31,7 @@ class SidebarComponent {
         if (isset($_SESSION['user_data'])) {
             echo '<div class="h-[20%]">';
             echo '<div class="text-center mb-2">'. $_SESSION['user_data']['name'] . '</div>';
+            echo '<div class="text-center mb-2 text-xs">'.'('. $_SESSION['user_data']['email'] .')'. '</div>';
             echo '<a href="./logout.php">';
             echo '<div class="bg-red-500 text-white rounded-md p-2 text-center">Sign Out</div>';
             echo '</a>';

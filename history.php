@@ -60,8 +60,11 @@
             <div class="flex flex-col py-2  border-b border-gray-300 cursor-pointer hover:bg-gray-300 px-2 transition-all duration-300 hover:bg-opacity-50 rounded-md">
                 <div class="h-auto pb-6 pt-4  ">
                     <div>Order ID <?= $row['oid'] ?> </div>
-                    <div class="flex flex-row gap-x-2  ">
+                    <div class="flex flex-col gap-x-2  ">
                         <div>ยอดรวม <?= $row['total'] ?> THB </div>
+                        <div><?= $row['recipient_address'] ?></div>
+                        <div><?= $row['recipient_phone'] ?></div>
+                        <div>ชำระแบบ <?= $row['payment_method'] ?></div>
                     </div>
                     <div class="flex flex-row gap-x-2  ">
                         <div><?= getThaiDateWithTime($row['odate']) ?></div>
@@ -69,7 +72,7 @@
 
                 </div>
                 <div class="grid grid-cols-2">
-                        <div class="text-center rounded-md <?=$row['status'] == 2 ? 'bg-gray-700 text-white': '' ?>">ยังไม่ส่ง</div>
+                        <div class="text-center rounded-md <?=$row['status'] == 2 ? 'bg-gray-700 text-white': '' ?>">ชำระเงินแล้ว</div>
                         <div class="text-center rounded-md <?=$row['status'] == 3 ? 'bg-lime-700 text-white': '' ?>">จัดส่งแล้ว</div>
                 </div>
 

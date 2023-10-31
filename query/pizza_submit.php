@@ -29,7 +29,7 @@
         $stmt->execute();
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
-        $sum_total = $row['total'];
+        $sum_total = $row['total'] + 15;
 
 
         // step 2
@@ -40,9 +40,11 @@
         date_default_timezone_set("Asia/Bangkok");
         $odate = date('Y-m-d H:i:s'); // get current datetime
 
+        $phone = "เบอร์โทร: " . $_GET['recipient_phone'] . "";
+        $address = "ที่อยู่: " . $_GET['recipient_address'] . "";
         $sql2 = "UPDATE iorder set status = 2 ,total = ?, payment_method = ?, recipient_name = ? , recipient_phone = ? , recipient_address = ?, odate = ? where oid = ?";
         $stmt2 = $condb->prepare($sql2);
-        $stmt2->bind_param('sssssss',$sum_total,$_GET['payment_method'] , $_GET['recipient_name'],$_GET['recipient_phone'],$_GET['recipient_address'], $odate, $_GET['oid']);
+        $stmt2->bind_param('sssssss',$sum_total,$_GET['payment_method'] , $_GET['recipient_name'],$phone,$address,$odate, $_GET['oid']);
         $stmt2->execute();
         if($stmt2->affected_rows == 1){
             $message = "ชำระเงินเรียบร้อย";
